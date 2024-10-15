@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from "react";
-import {
-  FaCheckCircle,
-  FaLeaf,
-  FaHandshake,
-  FaShieldAlt,
-  FaPeopleCarry,
-  FaLightbulb,
-  FaRecycle,
-  FaAward,
-  FaUserShield,
-} from "react-icons/fa";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  FaAward,
+  FaCheckCircle,
+  FaHandshake,
+  FaLightbulb,
+  FaPeopleCarry,
+  FaRecycle,
+  FaRocket,
+  FaShieldAlt,
+  FaUserShield,
+} from "react-icons/fa";
 
 // Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -22,7 +22,6 @@ const CoreValues = () => {
   useEffect(() => {
     // GSAP animation for the core values cards
     const ctx = gsap.context(() => {
-      // Create a ScrollTrigger for each card
       cardsRef.current.forEach((card, index) => {
         gsap.fromTo(
           card,
@@ -33,60 +32,129 @@ const CoreValues = () => {
             duration: 0.5,
             stagger: 0.1,
             scrollTrigger: {
-              trigger: card, // Trigger animation on the current card
-              start: "top 75%", // Start animation when the top of the card is 60% down the viewport
-              toggleActions: "play none none reverse", // Play on enter, reverse on leave
-              once: false, // Animation happens every time it enters
+              trigger: card,
+              start: "top 75%",
+              toggleActions: "play none none reverse",
+              once: false,
             },
           }
         );
       });
     });
 
-    return () => ctx.revert(); // Cleanup
+    return () => ctx.revert();
   }, []);
 
-  return (
-    <div className="relative md:my-20 py-2 my-10 md:pb-20 pb-10 bg-yellow-50 bg-opacity-50">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 -left-[1300px] border rounded-e-full w-full h-48 bg-cover bg-center opacity-20"
-        style={{ backgroundImage: "url('/cleaningImages/vector4.png')" }} // Corrected the path syntax for background image
-      ></div>
+  // Array for each core value with image, title, and description
+  const coreValuesData = [
+    {
+      icon: <FaAward className="" />, // Icon
 
+      image: "/cleaningImages/SCard1.jpg", // Replace with actual image paths
+      title: "Excellence",
+      description:
+        "We are dedicated to delivering exceptional service and exceeding expectations in everything we do. We strive for excellence in quality, and customer satisfaction.",
+    },
+    {
+      icon: <FaShieldAlt className="" />, // Icon
+
+      image: "/cleaningImages/SCard1.jpg", // Replace with actual image paths
+      title: "Integrity",
+      description:
+        "We conduct our business with honesty, transparency, and ethical behavior. Integrity is at the heart of our interactions with clients, employees, and partners.",
+    },
+    {
+      icon: <FaPeopleCarry className="" />, // Icon
+
+      image: "/cleaningImages/SCard1.jpg", // Replace with actual image paths
+      title: "Teamwork",
+      description:
+        "We foster a collaborative and supportive work environment where every team member is valued, empowered, and respected.",
+    },
+    {
+      icon: <FaCheckCircle className="" />, // Icon
+
+      image: "/cleaningImages/SCard1.jpg", // Replace with actual image paths
+      title: "Customer Focus",
+      description:
+        "We prioritize the needs and satisfaction of our clients above all else. By listening attentively, understanding their requirements, and delivering personalized solutions.",
+    },
+    {
+      icon: <FaRocket className="" />, // Icon (My Idea)
+      image: "/cleaningImages/SCard1.jpg", // Replace with actual image paths
+      title: "Continuous Growth",
+      description:
+        "We believe in constant learning and development, encouraging innovation and personal growth at every level. This drives us forward and helps us adapt to a changing world.",
+    },
+    {
+      icon: <FaHandshake className="" />, // Icon
+
+      image: "/cleaningImages/SCard1.jpg", // Replace with actual image paths
+      title: "Professionalism",
+      description:
+        "We maintain the highest standards of professionalism in our conduct, appearance, and communication. Our team members are knowledgeable, courteous, and respectful at all times.",
+    },
+    {
+      icon: <FaLightbulb className="" />, // Icon
+
+      image: "/cleaningImages/SCard1.jpg", // Replace with actual image paths
+      title: "Innovation",
+      description:
+        "We embrace innovation and continuous improvement in our processes, technologies, and services.",
+    },
+    {
+      icon: <FaRecycle className="" />, // Icon
+      image: "/cleaningImages/SCard1.jpg", // Replace with actual image paths
+      title: "Sustainability",
+      description:
+        "We are committed to environmental sustainability and responsible stewardship of natural resources.",
+    },
+    {
+      icon: <FaUserShield className="" />, // Icon
+      image: "/cleaningImages/SCard1.jpg", // Replace with actual image paths
+      title: "Safety",
+      description:
+        "We prioritize the safety and well-being of our employees, clients, and communities.",
+    },
+  ];
+
+  return (
+    <div className="relative py-10 md:mt-20 mt-10 bg-yellow-50 bg-opacity-50">
       <div className="relative z-10">
-        <div className="md:px-10 px-5 text-center text-customGolden md:text-3xl text-xl font-bold md:my-10 my-5">
+        <div className="md:px-10 px-5 text-center text-customGolden md:text-3xl text-xl font-bold my-5">
           OUR CORE VALUES
           <div className="mx-auto mt-2 w-[120px] h-[2px] bg-customGolden rounded-full"></div>
         </div>
-        <div className="grid md:grid-cols-3 gap-6 md:px-10 px-5">
-          {/* First Grid Item */}
-          <div className="text-customGrey flex justify-center items-center rounded-md p-6">
-            <p className="font-bold text-md">
-              These core values guide our decisions, actions, and relationships,
-              shaping the culture and identity of Swayz Cleaning Services.
-            </p>
-          </div>
-
-          {/* Other Grid Items with Icons and Descriptions */}
-          {[
-            { icon: <FaAward />, title: "Excellence", description: "We are dedicated to delivering exceptional service and exceeding expectations in everything we do. We strive for excellence in quality, reliability, and customer satisfaction." },
-            { icon: <FaShieldAlt />, title: "Integrity", description: "We conduct our business with honesty, transparency, and ethical behavior. Integrity is at the heart of our interactions with clients, employees, and partners." },
-            { icon: <FaPeopleCarry />, title: "Teamwork", description: "We foster a collaborative and supportive work environment where every team member is valued, empowered, and respected." },
-            { icon: <FaCheckCircle />, title: "Customer Focus", description: "We prioritize the needs and satisfaction of our clients above all else. By listening attentively, understanding their requirements, and delivering personalized solutions." },
-            { icon: <FaHandshake />, title: "Professionalism", description: "We maintain the highest standards of professionalism in our conduct, appearance, and communication. Our team members are knowledgeable, courteous, and respectful at all times." },
-            { icon: <FaLightbulb />, title: "Innovation", description: "We embrace innovation and continuous improvement in our processes, technologies, and services." },
-            { icon: <FaRecycle />, title: "Sustainability", description: "We are committed to environmental sustainability and responsible stewardship of natural resources." },
-            { icon: <FaUserShield />, title: "Safety", description: "We prioritize the safety and well-being of our employees, clients, and communities." },
-          ].map((value, index) => (
+        <p className=" text-customGrey font-semibold text-md text-center">
+            These core values guide our decisions, actions, and relationships, shaping the culture and identity of Swayz Cleaning Services.
+          </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 gap-6 py-10 md:px-10 px-5">
+          {coreValuesData.map((value, index) => (
             <div
               key={index}
-              className="border border-customGrey rounded-md p-6 text-customGrey"
-              ref={(el) => (cardsRef.current[index] = el)} // Assign each card to the ref array
+              className="bg-white border rounded-3xl relative overflow-hidden"
+              ref={(el) => (cardsRef.current[index] = el)}
             >
-              <div className="text-4xl mb-2 text-customGolden">{value.icon}</div>
-              <h3 className="font-bold text-customBlack mb-2 text-lg">{value.title}</h3>
-              <p className="text-sm font-semibold">{value.description}</p>
+              {/* Image at the top */}
+              <img
+                src={value.image}
+                alt={value.title}
+                className="w-full h-80 object-cover rounded-3xl"
+              />
+              {/* Title */}
+              <div className="my-10">
+                <h3 className="font-bold mx-10  text-customBlack mt-5 mb-3 text-xl">
+                  {value.title}
+                </h3>
+                {/* Description */}
+                <p className="text-sm mx-10  font-semibold text-customGrey mb-4">
+                  {value.description}
+                </p>
+                {/* Action Button */}
+                <button className="bg-orange-50 border mx-10 text-4xl  text-orange-700 rounded-md p-3">
+                  <span className="text-2xl ">{value.icon}</span>
+                </button>
+              </div>
             </div>
           ))}
         </div>

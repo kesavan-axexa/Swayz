@@ -1,84 +1,168 @@
-import React, { useRef, useState } from "react";
-import { motion, useTransform, useScroll } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+
+import { FaIndustry } from "react-icons/fa6";
+import { MdOutlineSecurity } from "react-icons/md";
+import { GrUserExpert } from "react-icons/gr";
+import { RiVipLine } from "react-icons/ri";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-  return (
-    <div className="relative bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: `url(/objective_image.jpg)`, // Corrected this line
-      }}
-    >
-      <div className="absolute inset-0 bg-black opacity-70 "></div>
+  const sectionRef = useRef(null); // Reference for the section to animate
+  const cardsRef = useRef(null); // Reference for the cards container
 
-      <div className="relative z-10">
-        <h2 className="text-center text-2xl md:text-4xl font-bold text-white md:pt-20 pt-10">
-        ABOUT SWAYZ SECURITY SERVICES
-        <div className="mx-auto mt-2 w-[120px] h-[2.5px] bg-white rounded-full"></div>
-
-        </h2>
-        <HorizontalScrollObjectives />
-      </div>
-    </div>
-  );
-};
-
-const HorizontalScrollObjectives = () => {
-  const targetRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
-
-  const [displayCount, setDisplayCount] = useState(2); // Initial display count
-
-  // Update display count based on scroll progress
-  React.useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange((latest) => {
-      if (latest > 0.1 && displayCount < objectives.length) {
-        setDisplayCount(objectives.length); // Show all cards
-      }
+  useEffect(() => {
+    // GSAP animation for the Pressure Cleaning section
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top 80%", // Start when the top of the section is at 80% of the viewport height
+        toggleActions: "play none none reverse", // Play on enter, reverse on leave
+        once: true, // Animation triggers only once
+      },
     });
 
-    return () => unsubscribe(); // Cleanup subscription
-  }, [scrollYProgress, displayCount]);
+    // Title animation
+    tl.fromTo(
+      sectionRef.current,
+      { opacity: 0, y: 50 }, // Start state
+      { opacity: 1, y: 0, duration: 0.5 } // End state
+    );
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]); // Adjust transform for two cards
+    // Card animations
+    gsap.fromTo(
+      cardsRef.current.children,
+      { x: -100, opacity: 0 }, // Start state for each card
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.5,
+        stagger: 0.3,
+        scrollTrigger: {
+          trigger: cardsRef.current,
+          start: "top 80%", // Trigger when the top of the cards is at 80% of the viewport height
+          toggleActions: "play none none reverse",
+          once: false, // Animation triggers only once
+        },
+      }
+    );
+
+    // Cleanup to kill the ScrollTrigger
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
-    <section ref={targetRef} className="relative h-[200vh] -mt-10">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-10 px-10">
-          {objectives.slice(0, displayCount).map((objective, index) => (
-            <ObjectiveCard key={index} objective={objective} />
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-};
+    <div>
+      <section ref={sectionRef} className="lg:py-20 py-10">
+        <div className="py-12 bg-white ">
+          <div className="max-w-7xl mx-auto px-2 sm:px-3 lg:px-4">
+            <div className="md:px-10 px-5 text-center text-customGolden md:text-3xl text-xl font-bold mb-10">
+              ABOUT SWAYZ SECURITY SERVICES
+              <div className="mx-auto mt-2 w-[120px] h-[2.5px] bg-customGolden rounded-full"></div>
+            </div>
 
-const ObjectiveCard = ({ objective }) => {
-  return (
-    <div className="group relative h-96 sm:w-[calc(45vw-30px)] w-[calc(45vw-30px)] p-6 overflow-hidden rounded-lg bg-cover bg-center transition-transform duration-300 transform hover:scale-105"
-       >
-      <div className="absolute inset-0 bg-[#272727] opacity-95 rounded-lg" />
-      <div className="absolute flex flex-col justify-center items-center h-full text-center p-4 ">
-        <p className="text-base sm:text-lg font-bold text-white text-justify">
-          {objective} {/* Display full text with justification */}
-        </p>
-      </div>
+            <div className="mt-10 overflow-hidden md:mx-5 mx-2">
+              {" "}
+              {/* Add overflow-hidden to prevent scroll issues */}
+              <dl
+                ref={cardsRef}
+                className="grid grid-cols-1 md:grid-cols-2 gap-10"
+              >
+                <div className="flex items-start card">
+                  <div className="flex-shrink-0">
+                    <div className="h-16 w-16 flex justify-center rounded-full bg-primary-500">
+                      <MdOutlineSecurity className="text-customGolden text-4xl" />
+                    </div>
+                  </div>
+                  <div className="md:ml-4">
+                    <p className="font-heading text-lg leading-6 font-bold text-gray-700">
+                      Comprehensive Security and Risk Assessment Services
+                    </p>
+                    <p className="mt-2 font-semibold text-md md:text-sm lg:text-lg text-justify text-customGrey">
+                      We offer a wide range of services to meet the diverse
+                      needs of our clients. In addition to providing
+                      comprehensive security services, we specialize in
+                      professional research and security analysis. This enables
+                      us to identify risks and vulnerabilities, allowing us to
+                      develop tailored security strategies for our clients.{" "}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start card">
+                  <div className="flex-shrink-0">
+                    <div className="h-16 w-16 flex justify-center rounded-full bg-primary-500">
+                      <GrUserExpert className="text-customGolden text-4xl" />
+                    </div>
+                  </div>
+                  <div className="md:ml-4">
+                    <p className="font-heading text-lg leading-6 font-bold text-gray-700">
+                      Tailored Solutions and Expert Equipment Advice
+                    </p>
+                    <p className="mt-2 font-semibold  text-md md:text-sm lg:text-lg text-justify text-customGrey">
+                      Understanding that each client has unique security
+                      requirements, we conduct thorough assessments to determine
+                      the most effective solutions. We also provide expert
+                      advice on security systems, offering cutting-edge
+                      detection equipment such as alarms, safes, and other
+                      safety materials to enhance protection.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start card">
+                  <div className="flex-shrink-0">
+                    <div className="h-16 w-16 flex justify-center rounded-full bg-primary-500">
+                      <FaIndustry className="text-customGolden text-4xl" />
+                    </div>
+                  </div>
+                  <div className="md:ml-4">
+                    <p className="font-heading text-lg leading-6 font-bold text-gray-700">
+                      Security Solutions for Diverse Industries
+                    </p>
+                    <p className="mt-2 text-justify font-semibold  text-md md:text-sm lg:text-lg text-customGrey">
+                      With our expertise and experience, we understand the
+                      unique challenges faced by various industries. Shopping
+                      centres, for instance, require comprehensive surveillance
+                      and security due to their size and potential for large
+                      crowds. Our services extend to mining complexes and other
+                      high-risk areas, ensuring top-notch protection.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start card">
+                  <div className="flex-shrink-0">
+                    <div className="h-16 w-16 flex justify-center rounded-full bg-primary-500">
+                      <RiVipLine className="text-customGolden text-4xl" />
+                    </div>
+                  </div>
+                  <div className="md:ml-4">
+                    <p className="font-heading text-lg leading-6 font-bold text-gray-700">
+                      VIP and Tourist Protection Services
+                    </p>
+                    <p className="mt-2 text-justify font-semibold  text-md md:text-sm lg:text-lg text-customGrey">
+                      We offer VIP services and close protection for
+                      high-profile individuals or groups. Safety is our top
+                      priority, which is why we also provide transportation and
+                      protection services for tourists visiting the country. Our
+                      specialized approach addresses diverse security threats,
+                      from common crime to industrial and state-related
+                      offenses.
+                    </p>
+                  </div>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
-
-
-
-const objectives = [
-  "We offer a wide range of services to meet the diverse needs of our clients. In addition to providing comprehensive security services, we also specialize in professional research and security analysis. This allows us to assess and identify potential risks and vulnerabilities, enabling us to develop tailored security strategies for our clients.",
-  "We understand that each client has unique security requirements, and we take the time to conduct thorough assessments to determine the most effective solutions. Furthermore, we offer a selection of cutting-edge detection equipment and expert advice on security systems such as alarms, safes, and other safety materials.",
-  "In a world where safety and security are of utmost importance, we are dedicated to providing top-notch protection for various sectors including shopping centres, mining complexes, and more. With our expertise and experience, we understand the unique challenges that each industry faces when it comes to security. Shopping centres, in particular, require comprehensive surveillance and security measures due to their size and the potential for large crowds.",
-  "Additionally, we provide VIP services and close protection for high-profile individuals or groups. Safety is our top priority, which is why we also offer transportation and protection services for tourists or tourist groups visiting our country. At Swayz Security Services we recognize that the sources of imperilment for the security of individuals, assets, and businesses are diverse. That's why we specialize in addressing common crime, crimes against the state, and business/industrial crime.",
-];
-
-
 
 export default About;
