@@ -1,13 +1,13 @@
-import React, { useRef, useEffect, useState } from "react";
-import { motion, useScroll, useTransform, useAnimation } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import logo from "/cleaningImages/CleaningLogo.jpg"; // Update this path to your logo
-import cleaningBanner from "/cleaningImages/CleaningBanner.jpg"; // Update this to your new banner image
+import cleaningVideo from "/cleaningImages/bannervideo.mp4"; // Update this to your video file
 
 const Banner = () => {
   return (
     <div className="bg-white">
       <TextParallaxContent
-        imgUrl={cleaningBanner} // Use the new banner image
+        videoUrl={cleaningVideo} // Use the new video file
         subheading="Swayz Cleaning Services"
       ></TextParallaxContent>
     </div>
@@ -16,7 +16,7 @@ const Banner = () => {
 
 const IMG_PADDING = 12;
 
-const TextParallaxContent = ({ imgUrl, subheading, heading, children }) => {
+const TextParallaxContent = ({ videoUrl, subheading, heading, children }) => {
   return (
     <div
       style={{
@@ -24,8 +24,8 @@ const TextParallaxContent = ({ imgUrl, subheading, heading, children }) => {
         paddingRight: IMG_PADDING,
       }}
     >
-      <div className="relative h-[150vh]">
-        <StickyImage imgUrl={imgUrl} />
+      <div className="relative h-[100vh]">
+        <StickyVideo videoUrl={videoUrl} />
         <OverlayCopy heading={heading} subheading={subheading} />
       </div>
       {children}
@@ -33,7 +33,7 @@ const TextParallaxContent = ({ imgUrl, subheading, heading, children }) => {
   );
 };
 
-const StickyImage = ({ imgUrl }) => {
+const StickyVideo = ({ videoUrl }) => {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -46,16 +46,22 @@ const StickyImage = ({ imgUrl }) => {
   return (
     <motion.div
       style={{
-        backgroundImage: `url(${imgUrl})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        scale,
+        position: "relative",
+        overflow: "hidden",
         height: `calc(100vh - ${IMG_PADDING * 2}px)`,
         top: IMG_PADDING,
-        scale,
       }}
       ref={targetRef}
-      className="sticky z-0 overflow-hidden rounded-3xl"
+      className="sticky z-0 rounded-3xl"
     >
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src={videoUrl}
+        autoPlay
+        loop
+        muted
+      />
       <motion.div
         className="absolute inset-0 bg-neutral-950/70"
         style={{
@@ -86,15 +92,15 @@ const OverlayCopy = ({ subheading, heading }) => {
       className="absolute left-0 top-0 flex h-screen w-full flex-col items-center justify-center text-white"
     >
       <img src={logo} alt="Company Logo" className="mb-4 h-24 w-auto" />
-      <p className="mb-2 text-customGolden ext-center font-bold uppercase text-xl md:mb-4 md:text-4xl">
+      <p className="mb-2 text-customGolden text-center font-bold uppercase text-2xl md:mb-4 md:text-4xl">
         {subheading}
       </p>
-      <p className="text-center text-lg font-bold md:text-2xl">
+      <p className="text-center text-base md:px-10 px-2 lg:px-40 font-normal md:text-xl">
         Swayz Cleaning Services is a division of the Swayz Group, committed to
         providing top-notch cleaning solutions for commercial and residential
         properties. With a dedication to excellence and a passion for
         cleanliness, <span className="text-customGolden">we deliver tailored cleaning services that exceed
-        expectations.</span>  Our comprehensive range of services ensures that every
+        expectations.</span> Our comprehensive range of services ensures that every
         client receives customized solutions to meet their unique needs.
       </p>
     </motion.div>

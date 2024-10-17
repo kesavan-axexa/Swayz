@@ -72,7 +72,7 @@ const OurMisson = () => {
         </div>
 
         {/* Description */}
-        <p className="text-customBlack font-bold text-md text-center my-5 lg:mx-56 mx-5 animated">
+        <p className="text-customBlack font-bold text-sm md:text-lg text-center my-5 lg:mx-56 mx-5 animated">
           At Swayz Security Services our mission is to strive towards perfection
           and be recognized as the leader in providing comprehensive security
           solutions.

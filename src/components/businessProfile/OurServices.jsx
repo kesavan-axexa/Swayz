@@ -53,7 +53,7 @@ const OurServices = () => {
           </div>
 
           {/* Description */}
-          <p className="text-customGrey text-center font-bold text-md  my-5 lg:mx-56 mx-5">
+          <p className="text-customGrey text-center font-bold text-sm md:text-lg  my-5 lg:mx-56 mx-5">
             We are proud to offer a range of comprehensive services to address
             the ever-growing need for cybersecurity and protection against malicious activities in the cyberspace.
             {/*  Our team of highly skilled
@@ -65,7 +65,7 @@ const OurServices = () => {
           </p>
 
           {/* Grid layout starts here */}
-          <div ref={servicesRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div ref={servicesRef} className="grid grid-cols-1 pt-5 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="animated bg-white rounded-md shadow p-6 text-center flex flex-col items-center justify-center">
               <MdDataSaverOff className="w-16 h-16 mb-4 text-customGolden" />
               <h4 className="text-lg font-bold text-customGolden mb-2">CLOUD</h4>

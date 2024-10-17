@@ -5,6 +5,8 @@ import OurServices from "../../components/businessProfile/OurServices";
 import ChooseUs from "../../components/businessProfile/ChooseUs";
 import OurMisson from "../../components/businessProfile/OurMisson";
 import OurClients from "../../components/businessProfile/OurClients";
+import WeProvide from "../../components/businessProfile/WeProvide";
+import Contact from "../../components/businessProfile/Contact";
 
 const BusinessProfile = () => {
   return (
@@ -15,6 +17,8 @@ const BusinessProfile = () => {
       <OurServices />
       <ChooseUs />
       <OurClients/>
+      <WeProvide/>
+      {/* <Contact/> */}
     </div>
   );
 };
