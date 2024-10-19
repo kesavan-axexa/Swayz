@@ -14,7 +14,7 @@ const Main1 = () => {
 
   return (
     <div>
-      <div className="py-16 px-5 md:px-20 bg-white text-center">
+      <div className=" md:-mt-10 md:pb-20 pb-10 px-5 md:px-20 bg-white text-center">
         <h2 className="text-3xl font-bold text-customGolden">
           Our Construction Process
         </h2>

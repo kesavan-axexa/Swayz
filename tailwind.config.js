@@ -24,6 +24,30 @@ export default {
         customGrey1: "#F8F8F8",
         customGrey2: "#F5F5F5"
       },
+      animation: {
+        rotate360: 'rotate360 1s linear infinite',
+        rotateNeg360: 'rotateNeg360 1s linear infinite',
+        rotate180: 'rotate180 1s linear infinite',
+        rotateNeg180: 'rotateNeg180 1s linear infinite',
+      },
+      keyframes: {
+        rotate360: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        rotateNeg360: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(-360deg)' },
+        },
+        rotate180: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(180deg)' },
+        },
+        rotateNeg180: {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(-180deg)' },
+        },
+      },
     },
   },
   plugins: [],
