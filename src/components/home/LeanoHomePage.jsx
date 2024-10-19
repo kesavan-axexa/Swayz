@@ -42,7 +42,7 @@ export const LeanoHomePage = () => {
 
   return (
     <div
-      className="px-4 lg:py-0 md:py-16 py-16 md:mt-0 mt-96 scroll-topdown scroll-container"
+      className="px-4 lg:py-0 md:py-16 py-16 md:mt-0 mt-[450px] scroll-topdown scroll-container"
       style={{
         backgroundImage: 'url("/cleaningImages/Bg1.png")',
         backgroundSize: "cover",

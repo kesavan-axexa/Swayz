@@ -11,8 +11,11 @@ html {
   }
 
  
-@media screen and (min-width: 320px) and (max-width: 376px) {
+@media screen and (min-width: 310px) and (max-width: 370px) {
     .scroll-topdown {
-        margin-top: 400px; /* This should push the content down */
+        margin-top: 940px !important; /* This should push the content down */
     }
 }
+
+
+
