@@ -27,9 +27,9 @@ const Home = () => {
         <ScrollSections/>
       </section>
 
-      <section style={{ marginBottom: '50px' }}>
+      {/* <section style={{ marginBottom: '50px' }}>
         <Accordion/>
-      </section>
+      </section> */}
 
       <section style={{ marginBottom: '50px' }}>
         <Main1/>
