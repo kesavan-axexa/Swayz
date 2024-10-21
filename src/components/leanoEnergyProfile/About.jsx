@@ -114,22 +114,23 @@ const ExampleContent = () => (
       the market is constantly evolving and changing.
     </p>
     <p className="mb-4 text-md font-semibold text-customGrey">
-    Leano Energy is a LEVEL 1 BBBEE contributor, with the company being 100% 
-black youth owned it allows the company a platform to have a new outlook on 
-the market and come up with innovative and exciting ideas of not only 
-lowering cost but design comprehensive marketing .We are a licensed 
-wholesale and distributor in bulk fuels, diesel, paraffin, oils and various 
-lubricants. The company provides its products to clients in Gauteng, 
-Mpumalanga, Limpopo and the North West province. Leano Energy offers 
-energy solutions to all industries including mining, agriculture, logistics, 
-airports, factories and municipalities to ensure profitable growth.
+      Leano Energy is a LEVEL 1 BBBEE contributor, with the company being 100%
+      black youth owned it allows the company a platform to have a new outlook
+      on the market and come up with innovative and exciting ideas of not only
+      lowering cost but design comprehensive marketing .We are a licensed
+      wholesale and distributor in bulk fuels, diesel, paraffin, oils and
+      various lubricants. The company provides its products to clients in
+      Gauteng, Mpumalanga, Limpopo and the North West province. Leano Energy
+      offers energy solutions to all industries including mining, agriculture,
+      logistics, airports, factories and municipalities to ensure profitable
+      growth.
     </p>
     <p className="mb-8 text-md font-semibold text-customGrey">
-    We include fuel management service where tanks are installed on site for the 
-clients and how much fuel they use on a monthly basis is monitored and 
-ensured to always get re-fueled on time and efficiently. Through this 
-management system as well as our tailored prices are guaranteed to cut our 
-clients fuel cost while providing quality products. 
+      We include fuel management service where tanks are installed on site for
+      the clients and how much fuel they use on a monthly basis is monitored and
+      ensured to always get re-fueled on time and efficiently. Through this
+      management system as well as our tailored prices are guaranteed to cut our
+      clients fuel cost while providing quality products.
     </p>
   </div>
 );

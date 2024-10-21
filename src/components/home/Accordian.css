@@ -1,6 +1,5 @@
-
-  
-  .title {
+/* Accordion styles */
+.title {
     font-size: max(2vw, 24px);
     line-height: 1.1;
     padding-bottom: 0.4em;
@@ -33,6 +32,8 @@
     margin-bottom: 40px;
     box-shadow: 0 30px 30px -10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    position: relative; /* Add position to manage z-index */
+    z-index: 1;
   }
   
   .accordion:nth-child(2) {
@@ -51,6 +52,37 @@
     height: 70vh;
   }
   
+  .description {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .accordion {
+    transition: margin-bottom 0.5s ease;
+  }
+  
+  .welcome-section {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 50px;
+    padding: 20px;
+  }
+  
+  .background-image {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: auto;
+  }
+  
+  .section {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 50px;
+  }
+  
   @media (max-width: 480px) {
     .accordion {
       padding: 15px 20px 8px;
@@ -58,6 +90,21 @@
   
     .title {
       font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .accordion {
+      margin-bottom: 20px;
+    }
+  
+    .description {
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+      opacity: 0;
+    }
+  
+    .section {
+      padding: 10px;
     }
   }
   
